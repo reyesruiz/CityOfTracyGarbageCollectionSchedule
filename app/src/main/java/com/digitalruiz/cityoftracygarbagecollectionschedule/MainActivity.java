@@ -44,13 +44,13 @@ public class MainActivity extends Activity {
             even = false;
         }
 
-//Using yard as even.
+//Using recycle as even.
         String yardorecycle;
         if ((even == true)){
-            yardorecycle = getString(R.string.yard);
+            yardorecycle = getString(R.string.recycle);
         }
         else {
-            yardorecycle = getString(R.string.recycle);
+            yardorecycle = getString(R.string.yard);
         }
         String turn = getString(R.string.turn);
         String date = DateUtils.formatDateTime(this, timenow.toMillis(false), DateUtils.FORMAT_SHOW_WEEKDAY|DateUtils.FORMAT_SHOW_DATE|DateUtils.FORMAT_SHOW_YEAR);
