@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Ciudad de Tracy, recolecion de Basura</string>
+    <string name="action_settings">Configuracion</string>
+    <string name="welcome">Bienvenido al Calendario de recolecion the Basura de la Ciudad de Tracy</string>
+    <string name="today">La fecha de hoy es:</string>
+    <string name="dayofputtingbinsout">Hoy es dia de sacar los botes de basura para la recolecion:</string>
+    <string name="dayofpickup">Hoy es el dia de la recolecion de basura, espero que haigas sacado los botes:</string>
+    <string name="nextpickup">La recolecion de basura de la siguiente semana es:</string>
+    <string name="yard">Basura del Jardin</string>
+    <string name="recycle">Reciclaje</string>
+    <string name="turn">Le tocal el turno a:</string>
+</resources>

@@ -1,7 +1,12 @@
 <resources>
-    <string name="app_name">CityOfTracyGarbageCollectionSchedule</string>
-
-    <string name="hello_world">Hello world!</string>
+    <string name="app_name">City Of Tracy Garbage Collection Schedule</string>
     <string name="action_settings">Settings</string>
     <string name="welcome">Welcome to the City of Tracy Garbage Schedule</string>
+    <string name="today">Todays Date is:</string>
+    <string name="dayofputtingbinsout">Today is the day to get the bins out for recollection:</string>
+    <string name="dayofpickup">Today is when they are recollecting your garbabe bins, hope you put them out already:</string>
+    <string name="nextpickup">Next week recollection will be:</string>
+    <string name="yard">Yard Waste</string>
+    <string name="recycle">Recycle</string>
+    <string name="turn">This time turn is:</string>
 </resources>
