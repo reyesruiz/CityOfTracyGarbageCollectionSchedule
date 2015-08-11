@@ -15,15 +15,23 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         Time timenow  = new Time();
         timenow.setToNow();
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(timenow.toMillis(false));
         int weekOfYear = cal.get(Calendar.WEEK_OF_YEAR);
         int daynumber = cal.get(Calendar.DAY_OF_WEEK);
+        String sideoftracyblvd = "east";
         boolean even;
         String message;
+        if (sideoftracyblvd == "east") {
+            //Nothing needs to be done, since east will be used as default
+        }
+        else {
+            //This will be for the west side of Tracy Bldv.
+            //Adding 1 to the weeofyear to make it opposite as east,
+            weekOfYear = weekOfYear + 1;
+        }
         if (daynumber == 1){
             message = getString(R.string.dayofputtingbinsout);
 
@@ -45,6 +53,7 @@ public class MainActivity extends Activity {
         }
 
 //Using recycle as even.
+
         String yardorecycle;
         if ((even == true)){
             yardorecycle = getString(R.string.recycle);
