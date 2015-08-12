@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:text="@string/welcome"
         android:id="@+id/welcome"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:layout_below="@+id/iv_tracy_logo"
         android:layout_alignParentLeft="true"
@@ -40,14 +40,6 @@
         android:layout_below="@+id/tv_message"
         android:layout_alignParentLeft="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_recycleoryard"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/tv_turn"
-        android:layout_alignParentLeft="true" />
-
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -56,4 +48,5 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:src="@drawable/tracy_logo" />
+
 </RelativeLayout>
