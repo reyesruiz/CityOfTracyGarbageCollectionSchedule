@@ -9,12 +9,15 @@ import android.widget.TextView;
 import java.util.Calendar;
 
 
+
 public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        new Waste(MainActivity.this);
         setContentView(R.layout.activity_main);
+
         Time timenow  = new Time();
         timenow.setToNow();
         Calendar cal = Calendar.getInstance();
@@ -55,12 +58,21 @@ public class MainActivity extends Activity {
 //Using recycle as even.
 
         String yardorecycle;
+
         if ((even == true)){
-            yardorecycle = getString(R.string.recycle);
+            Waste waste = Waste.wastes[0];
+            yardorecycle = getString(waste.getName());
+            //yardorecycle = getString(R.string.recycle);
         }
         else {
-            yardorecycle = getString(R.string.yard);
+            Waste waste = Waste.wastes[1];
+            yardorecycle = getString(waste.getName());
+          //  yardorecycle = getString(R.string.yard);
         }
+        Waste waste = Waste.wastes[2];
+        String garbage = getString(waste.getName());
+        String and = getString(R.string.and);
+        yardorecycle = garbage + " " + and + " " + yardorecycle;
         String turn = getString(R.string.turn);
         String date = DateUtils.formatDateTime(this, timenow.toMillis(false), DateUtils.FORMAT_SHOW_WEEKDAY|DateUtils.FORMAT_SHOW_DATE|DateUtils.FORMAT_SHOW_YEAR);
         String todaysformatted = getString(R.string.today) +" " + date;

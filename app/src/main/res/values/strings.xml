@@ -9,4 +9,6 @@
     <string name="yard">Yard Waste</string>
     <string name="recycle">Recycle</string>
     <string name="turn">This time turn is:</string>
+    <string name="garbage">Garbage</string>
+    <string name="and">and</string>
 </resources>

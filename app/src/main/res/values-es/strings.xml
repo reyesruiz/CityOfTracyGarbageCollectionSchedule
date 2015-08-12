@@ -8,5 +8,8 @@
     <string name="nextpickup">La recolecion de basura de la siguiente semana es:</string>
     <string name="yard">Basura del Jardin</string>
     <string name="recycle">Reciclaje</string>
+    <string name="garbage">Basura</string>
     <string name="turn">Le tocal el turno a:</string>
+    <string name="and">y</string>
+
 </resources>
