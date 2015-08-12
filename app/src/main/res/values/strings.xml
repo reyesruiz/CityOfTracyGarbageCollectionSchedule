@@ -11,4 +11,7 @@
     <string name="turn">This time turn is:</string>
     <string name="garbage">Garbage</string>
     <string name="and">and</string>
+    <string name="descRecycle">Recycle are items such as plastic, paper, etc, etc</string>
+    <string name="descYard">Yard waste include waste from mowing lawn, tree branches, plants, etc etc</string>
+    <string name="descGarbage">Garbage is anything else that does not fit into recycle and yard waste</string>
 </resources>

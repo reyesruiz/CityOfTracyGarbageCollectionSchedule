@@ -11,5 +11,7 @@
     <string name="garbage">Basura</string>
     <string name="turn">Le tocal el turno a:</string>
     <string name="and">y</string>
-
+    <string name="descRecycle">Reciclaje incluye objectos de platico, papel, etc, etc</string>
+    <string name="descYard">Basura del jardin incluyes objectos como zacate, ramas, plantas, etc etc</string>
+    <string name="descGarbage">Basura es cual quier objecto que no se pueda incluyir en el reciclaje or jardin</string>
 </resources>
