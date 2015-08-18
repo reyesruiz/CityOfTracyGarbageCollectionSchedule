@@ -1,0 +1,10 @@
+<resources>
+    <string-array name="sideoftracy">
+        <item name="east">East Side of Tracy Blvd</item>
+        <item name="west">West Side of Tracy Blvd</item>
+    </string-array>
+    <string-array name="sideoftracyvalues">
+        <item name="east">east</item>
+        <item name="west">west</item>
+    </string-array>
+</resources>

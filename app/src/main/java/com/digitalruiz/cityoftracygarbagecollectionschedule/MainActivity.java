@@ -1,9 +1,15 @@
 package com.digitalruiz.cityoftracygarbagecollectionschedule;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.format.DateUtils;
 import android.text.format.Time;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,6 +18,8 @@ import java.util.Calendar;
 
 
 public class MainActivity extends Activity {
+
+    private static final int RESULT_SETTINGS = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,22 +47,32 @@ public class MainActivity extends Activity {
         //declaring Variables
         int weekOfYear = cal.get(Calendar.WEEK_OF_YEAR);
         int daynumber = cal.get(Calendar.DAY_OF_WEEK);
-        String sideoftracyblvd = "east";
+        String sideoftracyblvd = GetMySharedPrefs("sideTracy");
+        Log.i("side", sideoftracyblvd);
+        if(sideoftracyblvd == "NULL"){
+            Intent i = new Intent(this, SettingsActivity.class);
+            startActivity(i);
+        }
+        else {
+
+        }
         boolean even;
         String message;
         String yardorecycle;
         String descyardorrecycle;
         int imageyardorrecycle;
-
-        // Side of tracy blvd, this will be set via Settings in later version
-        if (sideoftracyblvd == "east") {
+        Log.i("side_week1", Integer.toString(weekOfYear));
+        if (sideoftracyblvd.equals("east")) {
+            Log.i("side_this", "this is east");
             //Nothing needs to be done, since east will be used as default
         }
         else {
             //This will be for the west side of Tracy Bldv.
             //Adding 1 to the weeofyear to make it opposite as east,
+            Log.i("side_this", "this is west");
             weekOfYear = weekOfYear + 1;
         }
+        Log.i("side_week2", Integer.toString(weekOfYear));
 
         //Now using Monday as a pickup day, this will be set in Settings page in later version.
         if (daynumber == 1){
@@ -118,4 +136,39 @@ public class MainActivity extends Activity {
     }
 
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        switch (item.getItemId()) {
+
+            case R.id.action_settings:
+                Intent i = new Intent(this, SettingsActivity.class);
+                startActivityForResult(i, RESULT_SETTINGS);
+                break;
+
+        }
+
+        return true;
+    }
+
+
+    @Override
+    public void onBackPressed(){
+        startActivity(new Intent(this, MainActivity.class));
+        //finish();
+    }
+    public String GetMySharedPrefs(String requestedsetting){
+        SharedPreferences SharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String sharedsetting = SharedPrefs.getString(requestedsetting, "NULL");
+        return sharedsetting;
+    }
 }

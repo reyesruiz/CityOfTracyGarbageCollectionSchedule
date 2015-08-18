@@ -1,0 +1,10 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="General">
+        <ListPreference
+            android:title="Side of Tracy Blvd"
+            android:entries="@array/sideoftracy"
+            android:summary="Select which side of Tracy Boulevard you live in, east or west"
+            android:entryValues="@array/sideoftracyvalues"
+            android:key="sideTracy"/>
+    </PreferenceCategory>
+</PreferenceScreen>
