@@ -6,5 +6,12 @@
             android:summary="Select which side of Tracy Boulevard you live in, east or west"
             android:entryValues="@array/sideoftracyvalues"
             android:key="sideTracy"/>
+        <ListPreference
+            android:title="Day of Collection"
+            android:summary="Select the day when your garbage gets pick up"
+            android:key="daychoosen"
+            android:entries="@array/days"
+            android:entryValues="@array/daysvalues"/>
+
     </PreferenceCategory>
 </PreferenceScreen>

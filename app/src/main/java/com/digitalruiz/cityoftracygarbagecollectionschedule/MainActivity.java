@@ -49,13 +49,13 @@ public class MainActivity extends Activity {
         int daynumber = cal.get(Calendar.DAY_OF_WEEK);
         String sideoftracyblvd = GetMySharedPrefs("sideTracy");
         Log.i("side", sideoftracyblvd);
-        if(sideoftracyblvd == "NULL"){
-            Intent i = new Intent(this, SettingsActivity.class);
-            startActivity(i);
-        }
-        else {
-
-        }
+       // if(sideoftracyblvd == "NULL"){
+        //    Intent i = new Intent(this, SettingsActivity.class);
+       //     startActivity(i);
+       // }
+       // else {
+//
+  //      }
         boolean even;
         String message;
         String yardorecycle;
@@ -75,11 +75,14 @@ public class MainActivity extends Activity {
         Log.i("side_week2", Integer.toString(weekOfYear));
 
         //Now using Monday as a pickup day, this will be set in Settings page in later version.
-        if (daynumber == 1){
+        String dayofpickup = GetMySharedPrefs("daychoosen");
+        Integer dayofpickupint = Integer.parseInt(dayofpickup);
+
+        if (daynumber == dayofpickupint-1){
             message = getString(R.string.dayofputtingbinsout);
 
         }
-        else if (daynumber == 2){
+        else if (daynumber == dayofpickupint){
             message = getString(R.string.dayofpickup);
 
         }
@@ -169,6 +172,10 @@ public class MainActivity extends Activity {
     public String GetMySharedPrefs(String requestedsetting){
         SharedPreferences SharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         String sharedsetting = SharedPrefs.getString(requestedsetting, "NULL");
+        if(sharedsetting == "NULL"){
+            Intent i = new Intent(this, SettingsActivity.class);
+            startActivity(i);
+        }
         return sharedsetting;
     }
 }
