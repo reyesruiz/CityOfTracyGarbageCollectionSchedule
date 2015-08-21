@@ -23,6 +23,7 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getIntent().setAction("Already created");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //Declaring references to access the views.
@@ -165,10 +166,21 @@ public class MainActivity extends Activity {
 
 
     @Override
-    public void onBackPressed(){
-        startActivity(new Intent(this, MainActivity.class));
-        //finish();
+    public void onResume(){
+        String action = getIntent().getAction();
+        if(action == null || !action.equals("Already created")){
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        else {
+            getIntent().setAction(null);
+        }
+
+        super.onResume();
     }
+
+
     public String GetMySharedPrefs(String requestedsetting){
         SharedPreferences SharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         String sharedsetting = SharedPrefs.getString(requestedsetting, "NULL");
