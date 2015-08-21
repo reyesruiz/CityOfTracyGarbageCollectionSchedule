@@ -1,0 +1,24 @@
+<resources>
+    <string-array name="sideoftracy">
+        <item name="east">Lado Este de Tracy Blvd</item>
+        <item name="west">Lado Oeste de Tracy Blvd</item>
+    </string-array>
+    <string-array name="sideoftracyvalues">
+        <item name="east">east</item>
+        <item name="west">west</item>
+    </string-array>
+    <string-array name="days">
+        <item name="monday">Lunes</item>
+        <item name="tuesday">Martes</item>
+        <item name="wednesday">Miercoles</item>
+        <item name="thursday">Jueves</item>
+        <item name="friday">Viernes</item>
+    </string-array>
+    <string-array name="daysvalues">
+        <item name="monday">2</item>
+        <item name="tuesday">3</item>
+        <item name="wednesday">4</item>
+        <item name="thursday">5</item>
+        <item name="friday">6</item>
+    </string-array>
+</resources>
