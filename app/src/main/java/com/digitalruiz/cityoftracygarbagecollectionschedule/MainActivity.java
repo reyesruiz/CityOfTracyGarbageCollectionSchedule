@@ -12,9 +12,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import java.text.DateFormatSymbols;
 import java.util.Calendar;
-
 
 
 public class MainActivity extends Activity {
@@ -88,7 +87,9 @@ public class MainActivity extends Activity {
 
         }
         else {
-            message = getString(R.string.nextpickup);
+            String[] daysofweek = new DateFormatSymbols().getWeekdays();
+            String thedayofpickup = daysofweek[dayofpickupint];
+            message = getString(R.string.nextpickup) + " " + thedayofpickup;
             weekOfYear = weekOfYear+1;
 
         }
