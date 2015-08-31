@@ -1,6 +1,8 @@
 package com.digitalruiz.cityoftracygarbagecollectionschedule;
 
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -19,6 +21,7 @@ import java.util.Calendar;
 public class MainActivity extends Activity {
 
     private static final int RESULT_SETTINGS = 1;
+    private int notification_id = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,6 +141,18 @@ public class MainActivity extends Activity {
         descRecycleorYardview.setText(descyardorrecycle);
         garbageimageview.setImageResource(imagegarbage);
         yardorrecycleimageview.setImageResource(imageyardorrecycle);
+
+        Notification notification = new Notification.Builder(this)
+                .setCategory(Notification.CATEGORY_MESSAGE)
+                .setContentTitle(getString(R.string.notification_tittle))
+                .setContentText(getString(R.string.garbage) + " " + getString(R.string.and) +  " " + yardorecycle )
+                .setSmallIcon(R.drawable.garbage_cart)
+                .setAutoCancel(true)
+                .setVisibility(100)
+                .build();
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        notificationManager.notify(notification_id, notification);
+
     }
 
 
