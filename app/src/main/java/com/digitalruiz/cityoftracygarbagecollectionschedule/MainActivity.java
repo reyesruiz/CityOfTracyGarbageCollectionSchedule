@@ -1,11 +1,15 @@
 package com.digitalruiz.cityoftracygarbagecollectionschedule;
 
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.text.format.DateUtils;
 import android.text.format.Time;
@@ -142,18 +146,19 @@ public class MainActivity extends Activity {
         garbageimageview.setImageResource(imagegarbage);
         yardorrecycleimageview.setImageResource(imageyardorrecycle);
 
-        Notification notification = new Notification.Builder(this)
-                .setCategory(Notification.CATEGORY_MESSAGE)
-                .setContentTitle(getString(R.string.notification_tittle))
-                .setContentText(getString(R.string.garbage) + " " + getString(R.string.and) +  " " + yardorecycle )
-                .setSmallIcon(R.drawable.garbage_cart)
-                .setAutoCancel(true)
-                .setVisibility(100)
-                .build();
-        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        notificationManager.notify(notification_id, notification);
+//        Notification notification = new Notification.Builder(this)
+//                .setCategory(Notification.CATEGORY_MESSAGE)
+//                .setContentTitle(getString(R.string.notification_tittle))
+//                .setContentText(getString(R.string.garbage) + " " + getString(R.string.and) +  " " + yardorecycle )
+//                .setSmallIcon(R.drawable.garbage_cart)
+//                .setAutoCancel(true)
+//                .setVisibility(100)
+//                .build();
+//        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+//        notificationManager.notify(notification_id, notification);
 
-    }
+        scheduleNotification(getNotification(yardorecycle), 10000);
+   }
 
 
     @Override
@@ -206,4 +211,28 @@ public class MainActivity extends Activity {
         }
         return sharedsetting;
     }
+
+    private void scheduleNotification(Notification notification, int delay){
+        Intent notificationIntent = new Intent(this, NotificationPublisher.class);
+        notificationIntent.putExtra(NotificationPublisher.NOTIFICATION_ID, 1);
+        notificationIntent.putExtra(NotificationPublisher.NOTIFICATION, notification);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        long futureInMillis = SystemClock.elapsedRealtime() + delay;
+        AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);
+    }
+
+    private Notification getNotification(String notification_content){
+        Notification.Builder notification = new Notification.Builder(this)
+                .setCategory(Notification.CATEGORY_MESSAGE)
+                .setContentTitle(getString(R.string.notification_tittle))
+                .setContentText(getString(R.string.garbage) + " " + getString(R.string.and) + " " + notification_content)
+                .setSmallIcon(R.drawable.garbage_cart)
+                .setAutoCancel(true)
+                .setVisibility(100);
+                return notification.build();
+
+    }
 }
+
