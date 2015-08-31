@@ -17,6 +17,7 @@
         <Preference
             android:key="btnTimeFilter"
             android:summary="Set a time to get notifications"
-            android:title="Set Notification Time" />
+            android:title="Set Notification Time"
+            />
     </PreferenceCategory>
 </PreferenceScreen>

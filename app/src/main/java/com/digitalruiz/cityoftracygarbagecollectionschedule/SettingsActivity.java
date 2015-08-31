@@ -5,6 +5,7 @@ import android.annotation.TargetApi;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
@@ -27,7 +28,7 @@ import java.util.logging.Handler;
  * href="http://developer.android.com/guide/topics/ui/settings.html">Settings
  * API Guide</a> for more information on developing a Settings UI.
  */
-public class SettingsActivity extends PreferenceActivity  {
+public class SettingsActivity extends PreferenceActivity {
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +56,11 @@ public class SettingsActivity extends PreferenceActivity  {
         @Override
         public void onTimeSet(TimePicker timePicker, int i, int i2){
             Log.i("timepicker", "hour "+i+" minute "+i2);
+
+            SharedPreferences preferences = getPreferenceManager().getSharedPreferences();
+            preferences.edit().putString("btnTimeFilterHour", Integer.toString(i)).putString("btnTimeFilterMinute", Integer.toString(i2)).commit();
+
+
         }
 
 
@@ -67,6 +73,9 @@ public class SettingsActivity extends PreferenceActivity  {
 
 
     }
+
+
+
 
 
 

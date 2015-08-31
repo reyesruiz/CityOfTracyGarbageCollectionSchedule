@@ -146,23 +146,21 @@ public class MainActivity extends Activity {
         garbageimageview.setImageResource(imagegarbage);
         yardorrecycleimageview.setImageResource(imageyardorrecycle);
 
-//        Notification notification = new Notification.Builder(this)
-//                .setCategory(Notification.CATEGORY_MESSAGE)
-//                .setContentTitle(getString(R.string.notification_tittle))
-//                .setContentText(getString(R.string.garbage) + " " + getString(R.string.and) +  " " + yardorecycle )
-//                .setSmallIcon(R.drawable.garbage_cart)
-//                .setAutoCancel(true)
-//                .setVisibility(100)
-//                .build();
-//        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-//        notificationManager.notify(notification_id, notification);
+        String notificationhour = GetMySharedPrefs("btnTimeFilterHour");
+        String notificationminute = GetMySharedPrefs("btnTimeFilterMinute");
+        int notihour = Integer.valueOf(notificationhour);
+        int notminute = Integer.valueOf(notificationminute);
+
 
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 22);
-        calendar.set(Calendar.MINUTE, 30);
+        calendar.set(Calendar.DAY_OF_WEEK, dayofpickupint-1);
+        calendar.set(Calendar.HOUR_OF_DAY, notihour);
+        calendar.set(Calendar.MINUTE, notminute);
         calendar.set(Calendar.SECOND, 0);
 
         scheduleNotification(getNotification(yardorecycle), calendar);
+
+
    }
 
 
