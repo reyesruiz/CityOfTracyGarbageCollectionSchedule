@@ -12,6 +12,11 @@
             android:key="daychoosen"
             android:entries="@array/days"
             android:entryValues="@array/daysvalues"/>
-
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Notifications">
+        <Preference
+            android:key="btnTimeFilter"
+            android:summary="Set a time to get notifications"
+            android:title="Set Notification Time" />
     </PreferenceCategory>
 </PreferenceScreen>

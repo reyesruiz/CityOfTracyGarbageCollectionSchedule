@@ -236,6 +236,7 @@ public class MainActivity extends Activity {
                 .setContentTitle(getString(R.string.notification_tittle))
                 .setContentText(getString(R.string.garbage) + " " + getString(R.string.and) + " " + notification_content)
                 .setSmallIcon(R.drawable.garbage_cart)
+                .setVibrate(new long[]{1000, 500, 1000, 500, 1000, 500, 2000})
                 .setAutoCancel(true)
                 .setVisibility(100);
                 return notification.build();

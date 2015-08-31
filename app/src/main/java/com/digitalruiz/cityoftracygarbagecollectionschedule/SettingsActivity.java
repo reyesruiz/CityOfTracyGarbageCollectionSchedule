@@ -1,10 +1,19 @@
 package com.digitalruiz.cityoftracygarbagecollectionschedule;
 
 
+import android.annotation.TargetApi;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
+import android.content.Context;
 import android.os.Bundle;
+import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
+import android.util.Log;
+import android.widget.TimePicker;
 
+import java.util.Calendar;
+import java.util.logging.Handler;
 
 
 /**
@@ -18,20 +27,48 @@ import android.preference.PreferenceFragment;
  * href="http://developer.android.com/guide/topics/ui/settings.html">Settings
  * API Guide</a> for more information on developing a Settings UI.
  */
-public class SettingsActivity extends PreferenceActivity {
-
+public class SettingsActivity extends PreferenceActivity  {
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getFragmentManager().beginTransaction().replace(android.R.id.content, new MySettingsFragment()).commit();
     }
 
-    public static class MySettingsFragment extends PreferenceFragment {
+    public static class MySettingsFragment extends PreferenceFragment implements TimePickerDialog.OnTimeSetListener {
+
+
         @Override
         public void onCreate(final Bundle savedInstanceState){
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.settings);
+
+            Preference btnTimeFilter = (Preference) findPreference("btnTimeFilter");
+            btnTimeFilter.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    showTimeDialog();
+                    return false;
+                }
+            });
         }
+
+        @Override
+        public void onTimeSet(TimePicker timePicker, int i, int i2){
+            Log.i("timepicker", "hour "+i+" minute "+i2);
+        }
+
+
+        private void showTimeDialog(){
+            final Calendar calendar = Calendar.getInstance();
+            int hour = calendar.get(Calendar.HOUR_OF_DAY);
+            int minute = calendar.get(Calendar.MINUTE);
+            new TimePickerDialog(getActivity(), this, hour, minute, false).show();
+        }
+
+
     }
+
+
+
 
 }
