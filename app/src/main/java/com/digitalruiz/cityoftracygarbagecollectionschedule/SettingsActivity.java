@@ -1,20 +1,18 @@
 package com.digitalruiz.cityoftracygarbagecollectionschedule;
 
 
-import android.annotation.TargetApi;
-import android.app.DatePickerDialog;
+
 import android.app.TimePickerDialog;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.TimePicker;
-
 import java.util.Calendar;
-import java.util.logging.Handler;
+
 
 
 /**
@@ -39,7 +37,7 @@ public class SettingsActivity extends PreferenceActivity {
 
 
         @Override
-        public void onCreate(final Bundle savedInstanceState){
+        public void onCreate(final Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.settings);
 
@@ -47,15 +45,17 @@ public class SettingsActivity extends PreferenceActivity {
             btnTimeFilter.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    showTimeDialog();
+                    String hour = GetMySharedPrefs("btnTimeFilterHour");
+                    String minute = GetMySharedPrefs("btnTimeFilterMinute");
+                    showTimeDialog(hour, minute);  //Will send NULL if none set.
                     return false;
                 }
             });
         }
 
         @Override
-        public void onTimeSet(TimePicker timePicker, int i, int i2){
-            Log.i("timepicker", "hour "+i+" minute "+i2);
+        public void onTimeSet(TimePicker timePicker, int i, int i2) {
+            Log.i("timepicker", "hour " + i + " minute " + i2);
 
             SharedPreferences preferences = getPreferenceManager().getSharedPreferences();
             preferences.edit().putString("btnTimeFilterHour", Integer.toString(i)).putString("btnTimeFilterMinute", Integer.toString(i2)).commit();
@@ -64,20 +64,28 @@ public class SettingsActivity extends PreferenceActivity {
         }
 
 
-        private void showTimeDialog(){
-            final Calendar calendar = Calendar.getInstance();
-            int hour = calendar.get(Calendar.HOUR_OF_DAY);
-            int minute = calendar.get(Calendar.MINUTE);
-            new TimePickerDialog(getActivity(), this, hour, minute, false).show();
+        private void showTimeDialog(String hour, String minute) {
+            int hour_int;
+            int minute_int;
+            if (hour == "NULL" || minute == "NULL"){
+                final Calendar calendar = Calendar.getInstance();
+                hour_int = calendar.get(Calendar.HOUR_OF_DAY);
+                minute_int = calendar.get(Calendar.MINUTE);
+
+            }
+            else {
+                hour_int = Integer.valueOf(hour);
+                minute_int = Integer.valueOf(minute);
+            }
+            new TimePickerDialog(getActivity(), this, hour_int, minute_int, false).show();
+
+
         }
 
-
+        public String GetMySharedPrefs(String requestedsetting){
+            SharedPreferences SharedPrefs = getPreferenceManager().getSharedPreferences();
+            String sharedsetting = SharedPrefs.getString(requestedsetting, "NULL");
+            return sharedsetting;
+        }
     }
-
-
-
-
-
-
-
 }
