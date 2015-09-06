@@ -110,29 +110,34 @@ public class MainActivity extends Activity {
 
         Integer dayofpickupint = Integer.parseInt(dayofpickup);
 
-        if (daynumber == dayofpickupint-1){
-            message = getString(R.string.dayofputtingbinsout);
+        String[] daysofweek = new DateFormatSymbols().getWeekdays();
+        String thedayofpickup = daysofweek[dayofpickupint];
+        if (daynumber <= dayofpickupint) {
 
-        }
-        else if (daynumber == dayofpickupint){
-            message = getString(R.string.dayofpickup);
+            if (daynumber == dayofpickupint - 1) {
+                message = getString(R.string.dayofputtingbinsout);
 
+            } else if (daynumber == dayofpickupint) {
+                message = getString(R.string.dayofpickup);
+
+            } else {
+                message = getString(R.string.nextpickup) + " " + thedayofpickup;
+            }
         }
         else {
-            String[] daysofweek = new DateFormatSymbols().getWeekdays();
-            String thedayofpickup = daysofweek[dayofpickupint];
             message = getString(R.string.nextpickup) + " " + thedayofpickup;
             weekOfYear = weekOfYear+1;
-
         }
 
 
         //Figuring out if it is even or odd week number
         if ((weekOfYear % 2 ) == 0) {
             even = true;
+            Log.i("side_even", Integer.toString(weekOfYear)+"is even");
         }
         else {
             even = false;
+            Log.i("side_even", Integer.toString(weekOfYear)+"not even");
         }
 
         //Using recycle as even.
