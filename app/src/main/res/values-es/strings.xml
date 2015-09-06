@@ -15,4 +15,6 @@
     <string name="descYard">Basura del jardin incluyes objectos como zacate, ramas, plantas, etc etc</string>
     <string name="descGarbage">Basura es cual quier objecto que no se pueda incluyir en el reciclaje or jardin</string>
     <string name="notification_tittle">City of Tracy Basura</string>
+    <string name="select_side">Por favor selecionar su lado de Tracy Blvd</string>
+    <string name="select_day">Por favor selecionar el dia recolecion de basura</string>
 </resources>

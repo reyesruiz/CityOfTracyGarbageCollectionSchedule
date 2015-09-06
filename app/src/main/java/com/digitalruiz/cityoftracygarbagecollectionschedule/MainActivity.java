@@ -16,6 +16,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.text.DateFormatSymbols;
 import java.util.Calendar;
 
@@ -41,6 +43,37 @@ public class MainActivity extends Activity {
         ImageView garbageimageview = (ImageView) findViewById(R.id.iv_garbage);
         ImageView yardorrecycleimageview = (ImageView) findViewById(R.id.iv_yardorrecycle);
 
+        String selectside = getString(R.string.select_side);
+        String selectday = getString(R.string.select_day);
+        String sideoftracyblvd = GetMySharedPrefs("sideTracy");
+        if (sideoftracyblvd == "NULL"){
+            Toast toast = Toast.makeText(this, selectside, Toast.LENGTH_LONG);
+            toast.show();
+            Intent i = new Intent(this, SettingsActivity.class);
+            startActivity(i);
+            this.onPause();
+            this.onDestroy();
+            this.finish();
+        }
+        else{
+            //Nothing
+        }
+        String dayofpickup = GetMySharedPrefs("daychoosen");
+        if (dayofpickup == "NULL"){
+            dayofpickup = "7";          //Assigning a number so app doesn't crash
+            Toast toast = Toast.makeText(this, selectday, Toast.LENGTH_LONG);
+            toast.show();
+            Intent i = new Intent(this, SettingsActivity.class);
+            startActivity(i);
+            this.finish();
+        }
+       // dayofpickup = "2";
+        //if (dayofpickup.equalsIgnoreCase("NULL")){
+        //    dayofpickup = "1";
+       // }
+        //else{
+            //Nothing
+        //}
         //Time and Calendar
         Time timenow  = new Time();
         Calendar cal = Calendar.getInstance();
@@ -52,7 +85,7 @@ public class MainActivity extends Activity {
         //declaring Variables
         int weekOfYear = cal.get(Calendar.WEEK_OF_YEAR);
         int daynumber = cal.get(Calendar.DAY_OF_WEEK);
-        String sideoftracyblvd = GetMySharedPrefs("sideTracy", "YES");
+
         Log.i("side", sideoftracyblvd);
 
         boolean even;
@@ -74,7 +107,7 @@ public class MainActivity extends Activity {
         Log.i("side_week2", Integer.toString(weekOfYear));
 
         //Now using Monday as a pickup day, this will be set in Settings page in later version.
-        String dayofpickup = GetMySharedPrefs("daychoosen", "YES");
+
         Integer dayofpickupint = Integer.parseInt(dayofpickup);
 
         if (daynumber == dayofpickupint-1){
@@ -138,9 +171,9 @@ public class MainActivity extends Activity {
         garbageimageview.setImageResource(imagegarbage);
         yardorrecycleimageview.setImageResource(imageyardorrecycle);
 
-        String notificationhour = GetMySharedPrefs("btnTimeFilterHour", "NO");
-        String notificationminute = GetMySharedPrefs("btnTimeFilterMinute", "NO");
-        if (notificationhour == "NO" || notificationminute == "NO"){
+        String notificationhour = GetMySharedPrefs("btnTimeFilterHour");
+        String notificationminute = GetMySharedPrefs("btnTimeFilterMinute");
+        if (notificationhour == "NULL" || notificationminute == "NULL"){
             Log.i("timepicker", "No Notification time set yet");
         }
         else {
@@ -205,16 +238,11 @@ public class MainActivity extends Activity {
     }
 
 
-    public String GetMySharedPrefs(String requestedsetting, String required){
+    public String GetMySharedPrefs(String requestedsetting){
         SharedPreferences SharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        String sharedsetting = SharedPrefs.getString(requestedsetting, required);
-        if(sharedsetting == "YES"){
-            Intent i = new Intent(this, SettingsActivity.class);
-            startActivity(i);
-        }
-        else {
+        String sharedsetting = SharedPrefs.getString(requestedsetting, "NULL");
 
-        }
+
         return sharedsetting;
     }
 
@@ -229,7 +257,7 @@ public class MainActivity extends Activity {
         //long futureInMillis = SystemClock.elapsedRealtime() + delay;
         AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
         alarmManager.cancel(pendingIntent);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 24*60*60*1000, pendingIntent);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 24 * 60 * 60 * 1000, pendingIntent);
     }
 
     private Notification getNotification(String notification_content){
@@ -244,5 +272,11 @@ public class MainActivity extends Activity {
                 return notification.build();
 
     }
+
+
+
+
+
+
 }
 

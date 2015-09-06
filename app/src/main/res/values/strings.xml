@@ -15,4 +15,6 @@
     <string name="descYard">Yard waste include waste from mowing lawn, tree branches, plants, etc etc</string>
     <string name="descGarbage">Garbage is anything else that does not fit into recycle and yard waste</string>
     <string name="notification_tittle">City of Tracy Garbage</string>
+    <string name="select_side">Please select your side of Tracy Blvd</string>
+    <string name="select_day">Please select your garbage collection pickup day</string>
 </resources>
