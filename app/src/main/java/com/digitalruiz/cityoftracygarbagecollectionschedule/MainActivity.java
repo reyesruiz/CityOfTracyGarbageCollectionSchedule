@@ -49,10 +49,9 @@ public class MainActivity extends Activity {
         if (sideoftracyblvd == "NULL"){
             Toast toast = Toast.makeText(this, selectside, Toast.LENGTH_LONG);
             toast.show();
-            Intent i = new Intent(this, SettingsActivity.class);
-            startActivity(i);
-            this.onPause();
-            this.onDestroy();
+           // Intent i = new Intent(this, SettingsActivity.class);
+           // startActivity(i);
+
             this.finish();
         }
         else{
@@ -63,8 +62,8 @@ public class MainActivity extends Activity {
             dayofpickup = "7";          //Assigning a number so app doesn't crash
             Toast toast = Toast.makeText(this, selectday, Toast.LENGTH_LONG);
             toast.show();
-            Intent i = new Intent(this, SettingsActivity.class);
-            startActivity(i);
+         //   Intent i = new Intent(this, SettingsActivity.class);
+         //   startActivity(i);
             this.finish();
         }
        // dayofpickup = "2";
@@ -242,6 +241,13 @@ public class MainActivity extends Activity {
         super.onResume();
     }
 
+    @Override
+    public void onPause(){
+        super.onPause();
+        Intent i = new Intent(this, SettingsActivity.class);
+        startActivity(i);
+    }
+
 
     public String GetMySharedPrefs(String requestedsetting){
         SharedPreferences SharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -267,6 +273,7 @@ public class MainActivity extends Activity {
 
     private Notification getNotification(String notification_content){
         Notification.Builder notification = new Notification.Builder(this)
+                .setDefaults(-1)
                 .setCategory(Notification.CATEGORY_MESSAGE)
                 .setContentTitle(getString(R.string.notification_tittle))
                 .setContentText(getString(R.string.garbage) + " " + getString(R.string.and) + " " + notification_content)

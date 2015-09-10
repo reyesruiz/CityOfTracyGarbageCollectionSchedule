@@ -51,6 +51,8 @@ public class SettingsActivity extends PreferenceActivity {
                     return false;
                 }
             });
+
+
         }
 
         @Override
@@ -59,7 +61,7 @@ public class SettingsActivity extends PreferenceActivity {
 
             SharedPreferences preferences = getPreferenceManager().getSharedPreferences();
             preferences.edit().putString("btnTimeFilterHour", Integer.toString(i)).putString("btnTimeFilterMinute", Integer.toString(i2)).commit();
-
+            this.getActivity().onBackPressed();
 
         }
 
@@ -91,6 +93,11 @@ public class SettingsActivity extends PreferenceActivity {
 
     @Override
     public void onBackPressed() {
+        getmeback();
+        super.onBackPressed();
+    }
+
+    public void getmeback(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
