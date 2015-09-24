@@ -17,4 +17,5 @@
     <string name="notification_tittle">City of Tracy Garbage</string>
     <string name="select_side">Please select your side of Tracy Blvd</string>
     <string name="select_day">Please select your garbage collection pickup day</string>
+    <string name="title_activity_set_notification">SetNotification</string>
 </resources>

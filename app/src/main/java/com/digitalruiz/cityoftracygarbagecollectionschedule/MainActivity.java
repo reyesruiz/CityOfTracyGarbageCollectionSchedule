@@ -175,29 +175,6 @@ public class MainActivity extends Activity {
         garbageimageview.setImageResource(imagegarbage);
         yardorrecycleimageview.setImageResource(imageyardorrecycle);
 
-        String notificationhour = GetMySharedPrefs("btnTimeFilterHour");
-        String notificationminute = GetMySharedPrefs("btnTimeFilterMinute");
-        if (notificationhour == "NULL" || notificationminute == "NULL"){
-            Log.i("timepicker", "No Notification time set yet");
-        }
-        else {
-            int notihour = Integer.valueOf(notificationhour);
-            int notminute = Integer.valueOf(notificationminute);
-
-            Log.i("timepickerset", notificationhour + notificationminute);
-
-            Calendar calendar = Calendar.getInstance();
-            calendar.set(Calendar.DAY_OF_WEEK, dayofpickupint-1);
-            calendar.set(Calendar.HOUR_OF_DAY, notihour);
-            calendar.set(Calendar.MINUTE, notminute);
-            calendar.set(Calendar.SECOND, 0);
-
-            scheduleNotification(getNotification(yardorecycle), calendar);
-        }
-
-
-
-
    }
 
 
@@ -256,39 +233,6 @@ public class MainActivity extends Activity {
 
         return sharedsetting;
     }
-
-    private void scheduleNotification(Notification notification, Calendar calendar){
-        Intent notificationIntent = new Intent(this, NotificationPublisher.class);
-        notificationIntent.putExtra(NotificationPublisher.NOTIFICATION_ID, 1);
-        notificationIntent.putExtra(NotificationPublisher.NOTIFICATION, notification);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-
-
-        //long futureInMillis = SystemClock.elapsedRealtime() + delay;
-        AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-        alarmManager.cancel(pendingIntent);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 24 * 60 * 60 * 1000, pendingIntent);
-    }
-
-    private Notification getNotification(String notification_content){
-        Notification.Builder notification = new Notification.Builder(this)
-                .setDefaults(-1)
-                .setCategory(Notification.CATEGORY_MESSAGE)
-                .setContentTitle(getString(R.string.notification_tittle))
-                .setContentText(getString(R.string.garbage) + " " + getString(R.string.and) + " " + notification_content)
-                .setSmallIcon(R.drawable.garbage_cart)
-                .setVibrate(new long[]{1000, 500, 1000, 500, 1000, 500, 2000})
-                .setAutoCancel(true)
-                .setVisibility(100);
-                return notification.build();
-
-    }
-
-
-
-
-
 
 }
 

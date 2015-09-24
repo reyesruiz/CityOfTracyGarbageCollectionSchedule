@@ -11,6 +11,8 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.util.Log;
 import android.widget.TimePicker;
+import android.widget.Toast;
+
 import java.util.Calendar;
 
 
@@ -58,10 +60,17 @@ public class SettingsActivity extends PreferenceActivity {
         @Override
         public void onTimeSet(TimePicker timePicker, int i, int i2) {
             Log.i("timepicker", "hour " + i + " minute " + i2);
+            if (timePicker.isShown()) {
+                SharedPreferences preferences = getPreferenceManager().getSharedPreferences();
+                preferences.edit().putString("btnTimeFilterHour", Integer.toString(i)).putString("btnTimeFilterMinute", Integer.toString(i2)).commit();
+                Intent intent = new Intent(getActivity(), SetNotification.class);
+                startActivity(intent);
 
-            SharedPreferences preferences = getPreferenceManager().getSharedPreferences();
-            preferences.edit().putString("btnTimeFilterHour", Integer.toString(i)).putString("btnTimeFilterMinute", Integer.toString(i2)).commit();
-            this.getActivity().onBackPressed();
+            }
+            else {
+                Toast toast = Toast.makeText(getActivity(), "something wrong", Toast.LENGTH_LONG);
+                toast.show();
+            }
 
         }
 
@@ -101,4 +110,5 @@ public class SettingsActivity extends PreferenceActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
 }

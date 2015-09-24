@@ -17,4 +17,5 @@
     <string name="notification_tittle">City of Tracy Basura</string>
     <string name="select_side">Por favor selecionar su lado de Tracy Blvd</string>
     <string name="select_day">Por favor selecionar el dia recolecion de basura</string>
+    <string name="title_activity_set_notification">Notificacion</string>
 </resources>
