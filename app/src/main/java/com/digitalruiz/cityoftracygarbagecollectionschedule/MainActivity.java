@@ -34,8 +34,8 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         getIntent().setAction("Already created");
         super.onCreate(savedInstanceState);
-        Parse.initialize(this, "5E4yuBOgV5WPq87t9rrW1IYA7mooo9PAPHkIXQd7", "NVpJ3CtrRA1518YAOFdqH6bke8Of1s5q7kCpZs3Z");
-        ParseInstallation.getCurrentInstallation().saveInBackground();
+        //Parse.initialize(this, "5E4yuBOgV5WPq87t9rrW1IYA7mooo9PAPHkIXQd7", "NVpJ3CtrRA1518YAOFdqH6bke8Of1s5q7kCpZs3Z");
+        //ParseInstallation.getCurrentInstallation().saveInBackground();
         setContentView(R.layout.activity_main);
         //Declaring references to access the views.
         TextView todaysdate = (TextView) findViewById(R.id.tv_todays_date);
@@ -54,8 +54,8 @@ public class MainActivity extends Activity {
         if (sideoftracyblvd == "NULL"){
             Toast toast = Toast.makeText(this, selectside, Toast.LENGTH_LONG);
             toast.show();
-           // Intent i = new Intent(this, SettingsActivity.class);
-           // startActivity(i);
+            Intent i = new Intent(this, SettingsActivity.class);
+            startActivity(i);
 
             this.finish();
         }
@@ -67,8 +67,8 @@ public class MainActivity extends Activity {
             dayofpickup = "7";          //Assigning a number so app doesn't crash
             Toast toast = Toast.makeText(this, selectday, Toast.LENGTH_LONG);
             toast.show();
-         //   Intent i = new Intent(this, SettingsActivity.class);
-         //   startActivity(i);
+            Intent i = new Intent(this, SettingsActivity.class);
+            startActivity(i);
             this.finish();
         }
        // dayofpickup = "2";
@@ -226,8 +226,7 @@ public class MainActivity extends Activity {
     @Override
     public void onPause(){
         super.onPause();
-        Intent i = new Intent(this, SettingsActivity.class);
-        startActivity(i);
+
     }
 
 

@@ -100,15 +100,15 @@ public class SettingsActivity extends PreferenceActivity {
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        getmeback();
-        super.onBackPressed();
-    }
+    //@Override
+    //public void onBackPressed() {
+     //   getmeback();
+      //  super.onBackPressed();
+    //}
 
-    public void getmeback(){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
+    //public void getmeback(){
+     //   Intent intent = new Intent(this, MainActivity.class);
+      //  startActivity(intent);
+    //}
 
 }
